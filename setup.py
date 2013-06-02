@@ -12,6 +12,7 @@ setup(
         "refreshbooks",
         "pyredmine",
         "python-dateutil",
-        "requests"
+        "requests",
+        "inflect"
     ]
 )
