@@ -1,0 +1,14 @@
+So on every sync we do the following:
+
+* projects.list with Sauce client_id. Regex out "Redmine ID: (\d+)" to determine
+  corresponding Redmine project identifier. Build a lookup dict for this.
+* Iterate over all time entries in Redmine since given date.
+* For each entry:
+    - Find the corresponding freshbooks project id for the project this redmine
+      time entry belongs to.
+        > If the project doesn't yet exist in Freshbooks, create it and add it
+          to the project lookup dict.
+    - If we haven't already, do a time_entry.list on the Freshbooks project.
+      Regex out "Redmine ID: (\d+)" and build lookup table.
+    - If this time entry hasn't yet been synced to Freshbooks, sync it with
+      time_entry.create
